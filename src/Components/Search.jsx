@@ -83,7 +83,7 @@ const Search = () => {
           <div className="row">
             <div className="col-lg-12">
               <h1 className="heading">All the assets you need, in one place</h1>
-            </div>
+            </div> 
             <div className="col-lg-10">
               <div className="form-group">
                 <input
