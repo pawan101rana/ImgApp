@@ -21,6 +21,9 @@ const Search = () => {
   const [imgData, setImgData] = useState([]);
   let limit = 12;
 
+
+  //Search function 
+
   const searchPhoto = () => {
     axios
       .get(
@@ -54,6 +57,7 @@ const Search = () => {
     });
   };
 
+
   useEffect(() => {
     localStorage.setItem("squery", JSON.stringify(query));
   }, [query]);
@@ -63,6 +67,11 @@ const Search = () => {
   useEffect(() => {
     searchPhoto();
   }, [limit]);
+
+
+
+
+  //Pagination Start
 
   const fetchsearchPhoto = (currentPage) => {
     axios
@@ -78,6 +87,8 @@ const Search = () => {
       });
   };
 
+// Send update Data on pagenation click
+
   const handlePageClick = (data) => {
     let currentPage = data.selected + 1;
     const newdata = [];
@@ -85,12 +96,14 @@ const Search = () => {
 
     setImgData(newdata);
 
-    // // scroll to the top
-    // //window.scrollTo(0, 0)
+
   };
 
   return (
     <>
+
+    {/* Search form start  */}
+    
       <div className="search-box-sec p-5 bg-primary text-white text-center">
         <div className="container">
           <div className="row">
@@ -125,6 +138,12 @@ const Search = () => {
         </div>
       </div>
 
+ {/* Search form End  */}
+
+
+
+      
+    {/* loop all image using map    */}
       <div className="container mt-5">
         <div className="gal">
           {imgData.map((value, index) => {
@@ -140,6 +159,12 @@ const Search = () => {
           })}
         </div>
 
+
+
+
+
+
+{/* Pagination component */}
         <ReactPaginate
           previousLabel={"previous"}
           nextLabel={"next"}
