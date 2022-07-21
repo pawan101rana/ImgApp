@@ -19,7 +19,7 @@ const Search = () => {
   const [searchParams, setSearchparams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("query"));
   const [imgData, setImgData] = useState([]);
-  let limit = 10;
+  let limit = 12;
 
   const searchPhoto = () => {
     axios
@@ -34,6 +34,17 @@ const Search = () => {
         setImgData(response.data.results);
       });
   };
+
+
+
+  const handleKeypress = e => {
+    //it triggers by pressing the enter key
+  if (e.keyCode === 13) {
+    searchPhoto();
+  }
+}
+
+
 
   const handleChange = (event) => {
     const newQuery = event.target.value;
@@ -56,20 +67,22 @@ const Search = () => {
   const fetchsearchPhoto = (currentPage) => {
     axios
       .get(
-        `https://api.unsplash.com/search/photos?page=${currentPage}&per_page=12&query=${query}&client_id=r3Mshqs_Ujo7bLYEGBpIJX9H2ZDX4z0KC-J4CESiOz8`
+        `https://api.unsplash.com/search/photos?page=${currentPage}&per_page=${limit}&query=${query}&client_id=r3Mshqs_Ujo7bLYEGBpIJX9H2ZDX4z0KC-J4CESiOz8`
       )
       .then((response) => {
         const data = response.data.results;
-
+        console.log(data);
+        setImgData(response.data.results);
         return data;
+        
       });
   };
 
   const handlePageClick = (data) => {
     let currentPage = data.selected + 1;
+    const newdata = [];
+     newdata = fetchsearchPhoto(currentPage);
 
-    const newdata = fetchsearchPhoto(currentPage);
-    console.log(newdata);
     setImgData(newdata);
 
     // // scroll to the top
@@ -90,6 +103,7 @@ const Search = () => {
                   type="text"
                   className="form-control"
                   onChange={handleChange}
+                  
                   id="usr"
                   value={query}
                   placeholder={query}
@@ -102,6 +116,7 @@ const Search = () => {
                 onClick={searchPhoto}
                 className="btn btn-danger"
                 style={{ width: "100%" }}
+                onKeyPress={handleKeypress}
               >
                 Search
               </button>
