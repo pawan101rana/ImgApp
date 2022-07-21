@@ -1,0 +1,39 @@
+ .heading {
+     font-size: 2rem;
+     padding-bottom: 2rem;
+     text-transform: uppercase;
+     font-weight: 700;
+}
+ .search-box-sec {
+     min-height: 200px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+ ul.pagination {
+     margin-top: 30px;
+}
+ .page-item.active .page-link {
+     background-color: #0d6efd;
+     border-color: #0d6efd;
+}
+ .gal {
+     -webkit-column-count: 3;
+    /* Chrome, Safari, Opera */
+     -moz-column-count: 3;
+    /* Firefox */
+     column-count: 3;
+}
+ .gal img{
+     width: 100%;
+     padding: 7px 0;
+}
+ @media (max-width: 500px) {
+     .gal {
+         -webkit-column-count: 1;
+        /* Chrome, Safari, Opera */
+         -moz-column-count: 1;
+        /* Firefox */
+         column-count: 1;
+    }
+}
